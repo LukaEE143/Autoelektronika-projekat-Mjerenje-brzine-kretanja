@@ -15,7 +15,9 @@ Druga dioda od dole u prvom stupcu služi za ispisivanje puta na prozoru serijsk
 Paljenjem i gašenjem prve diode od dole u drugom stupcu započinjemo mjerenje, pri čemu će nam zasvjetliti četvrta dioda u četvrtom stubcu. Za kraj mjerenja pritisnemo i ugasimo drugu diodu od dole u drugom stubcu što će označiti kraj mjerenja.Nakon ovog možemo pritisnuti treću diodu u trećem stupcu da vidimo izmjereni put na sedmosegmentnom displeju. 
 
 Prva dioda od dole u trećem stupcu služi za prikaz trenutnog puta na sedmosegmentnom displeju.
+
 Druga dioda od dole u trećem stupcu služi za prikaz brzine na sedmosegmentnom displeju.
+
 Treća dioda od dole u trećem stupcu služi za prikaz trenutnog puta na sedmosegmentnom displeju.
 
 
