@@ -52,7 +52,7 @@ static uint8_t volatile r_point1;
 static char obim[R_BUF_SIZE];
 
 /* 7-SEG NUMBER DATABASE - ALL HEX DIGITS */
-static const uint8_t hexnum[] = { 0x3F, 0x06, 0x5B, 0x4F, 0x66, 0x6D, 0x7D, 0x07, 0x7F, 0x6F };
+static const uint8_t hexnum[] = { 0x3F, 0x06, 0x5B, 0x4F, 0x66, 0x6D, 0x7D, 0x07, 0x7F, 0x6F }; // prikaz na 7seg displeju 
 
 /* GLOBAL OS-HANDLES */
 static SemaphoreHandle_t RXC_BinarySemaphore0; //binarni semafor za serijski port COM_CH_0
