@@ -468,88 +468,101 @@ void main_demo(void)
 	vPortSetInterruptHandler(portINTERRUPT_SRL_RXC, prvProcessRXCInterrupt); //poziva se prvProcessRXCInterrupt kad se desi prijemni prekid 
 
 	// Kreiranje semafora 
-	RXC_BinarySemaphore0 = xSemaphoreCreateBinary();
-	if (RXC_BinarySemaphore0 == NULL) { while (1); } 
+	if ((RXC_BinarySemaphore0 = xSemaphoreCreateBinary()) == NULL) {
+		while (1);
+	}
 
-	RXC_BinarySemaphore1 = xSemaphoreCreateBinary();
-	if (RXC_BinarySemaphore1 == NULL) { while (1); } 
+	if ((RXC_BinarySemaphore1 = xSemaphoreCreateBinary()) == NULL) {
+		while (1);
+	}
 
 	/* Kreiranje redova */
-	inkrementi_q = xQueueCreate(10, sizeof(uint16_t)); //kreira se red koji moze sadrzavati do 10 elemanata 
-	if (inkrementi_q == NULL) { while (1); }
+
+	if ((inkrementi_q = xQueueCreate(10, sizeof(uint16_t))) == NULL) {
+		while (1);
+	}
 
 	/* Kreiranje taskova */
 	BaseType_t status;
 
-	status = xTaskCreate(
+	if ((status = xTaskCreate(
 		mjerenje_brzine,
 		"task za brzinu",
 		configMINIMAL_STACK_SIZE, // velicina steka 
 		NULL, // vrednost koja se prosleđuje kao parametar zadatku prilikom njegovog kreiranja
 		(UBaseType_t)SERVICE_TASK_PRI,
-		NULL // nema dodatnih parametara koje JE potrebno slati tasku 
-	);
-	if (status != pdPASS) { while (1); } //ulazi u beskonačnu petlju ako task nije pravilno kreiran 
+		NULL // nema dodatnih parametara koje je potrebno slati tasku 
+	)) != pdPASS) {
+		while (1);
+	}
 
-	status = xTaskCreate(
+	if ((status = xTaskCreate(
 		ukupni_predjeni_put,
 		"task za put",
 		configMINIMAL_STACK_SIZE,
 		NULL,
 		(UBaseType_t)SERVICE_TASK_PRI,
 		NULL
-	);
-	if (status != pdPASS) { while (1); } //ulazi u beskonačnu petlju ako task nije pravilno kreiran 
+	)) != pdPASS) {
+		while (1);
+	}
 
-	status = xTaskCreate(
+	if ((status = xTaskCreate(
 		led_bar_tsk,
 		"led bar task",
 		configMINIMAL_STACK_SIZE,
 		NULL,
 		(UBaseType_t)SERVICE_TASK_PRI,
 		NULL
-	);
-	if (status != pdPASS) { while (1); } // ulazi u beskonačnu petlju ako task nije pravilno kreiran 
+	)) != pdPASS) {
+		while (1);
+	}
 
-	status = xTaskCreate(
+	if ((status = xTaskCreate(
 		SerialSend_Task0,
 		"STx",
 		configMINIMAL_STACK_SIZE,
 		NULL,
 		(UBaseType_t)TASK_SERIAL_SEND_PRI,
 		NULL
-	);
-	if (status != pdPASS) { while (1); } //ulazi u beskonačnu petlju ako task nije pravilno kreiran 
+	)) != pdPASS) {
+		while (1);
+	}
 
-	status = xTaskCreate(
+	if ((status = xTaskCreate(
 		SerialSend_Task1,
 		"STx",
 		configMINIMAL_STACK_SIZE,
 		NULL,
 		(UBaseType_t)TASK_SERIAL_SEND_PRI,
-		NULL
-	);
-	if (status != pdPASS) { while (1); } //ulazi u beskonačnu petlju ako task nije pravilno kreiran 
+		NULL 
+	)) != pdPASS) {
+		while (1);
+	}
 
-	status = xTaskCreate(
+
+	if ((status = xTaskCreate(
 		SerialReceive_Task0,
 		"SRx",
 		configMINIMAL_STACK_SIZE,
 		NULL,
 		(UBaseType_t)TASK_SERIAL_REC_PRI,
 		NULL
-	);
-	if (status != pdPASS) { while (1); } //ulazi u beskonačnu petlju ako task nije pravilno kreiran 
+	)) != pdPASS) {
+		while (1);
+	}
 
-	status = xTaskCreate(
+
+	if ((status = xTaskCreate(
 		SerialReceive_Task1,
 		"SRx",
 		configMINIMAL_STACK_SIZE,
 		NULL,
 		(UBaseType_t)TASK_SERIAL_REC_PRI,
 		NULL
-	);
-	if (status != pdPASS) { while (1); } //ulazi u beskonačnu petlju ako task nije pravilno kreiran 
+	)) != pdPASS) {
+		while (1);
+	}
 
 	r_point0 = 0;
 	r_point1 = 0;
